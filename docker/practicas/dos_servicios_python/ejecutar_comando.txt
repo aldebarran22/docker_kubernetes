@@ -1,0 +1,9 @@
+# Construir los servicios:
+docker compose build
+
+# Levantar los servicios:
+docker compose up
+
+# Hacemos la petición del servicio2 al servicio1
+# Hacemos la petición al servicio2
+http://localhost:5001
