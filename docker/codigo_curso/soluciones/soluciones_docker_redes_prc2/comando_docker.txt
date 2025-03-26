@@ -1,0 +1,36 @@
+# Crear la red:
+docker network create wordpress_net
+
+
+# Crear el contenedor de mysql:
+docker run -d \
+--rm \
+--name mysql_c  \
+--network wordpress_net  \
+-p 3307:3306  \
+--env-file $HOME/mysql.properties \
+-v mysql_data:/var/lib/mysql \
+mysql:8.0
+
+
+# Crear el contenedor de wordpress
+docker run -d \
+--rm \
+--name wordpress_c  \
+--network wordpress_net  \
+-p 80:80 \
+--env-file $HOME/wordpress.properties \
+-v wordpress_data:/var/www/html \
+wordpress:php8.0
+
+
+# Crear el contenedor de phpMyAdmin
+docker run -d  \
+--rm
+--name phpmyadmin_c \
+--network wordpress_net \
+-p 8080:80 \
+-e PMA_HOST=mysql_c \
+phpmyadmin:5.1.1
+
+

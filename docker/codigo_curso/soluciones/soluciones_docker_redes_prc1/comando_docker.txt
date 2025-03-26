@@ -1,0 +1,114 @@
+# Conectar con adminer
+
+# Parte 1: con --link
+
+# Crear un contenedor con la imagen oficial de mysql
+docker run -d \
+--rm \
+--name mysql_c \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=root \
+-v mysql_data:/var/lib/mysql \
+mysql:8.0
+
+
+# El contenedor para adminer y accede al contenedor de mysql_c
+
+docker run -d \
+--rm \
+--name adminer_c \
+--link mysql_c \
+-p 8080:8080 \
+adminer
+
+# Cuando creamos el enlace con --link en el contenedor de adminer
+# veremos en el fichero /etc/hosts una linea que hace referencia
+# al contenedor de mysql_c
+
+docker exec -it adminer_c cat /etc/hosts
+
+Conectar con adminer con: http://localhost:8080
+
+En el formulario que muestra adminer en el campo servidor cambiar a: mysql_c
+
+Parámetros:
+System: MYSQL
+Server: mysql_c
+User: root
+pwd: root
+
+# Tenemos 3 posibilidades para evitar esto:
+1) En vez llamar al contenedor mysql_c --> db
+2) Crear un alias de red con el nombre db para contenedor: mysql_c
+3) Utilizar una variable de entorno: ADMINER_DEFAULT_SERVER poner db
+
+Crear el alias en el parámetro: --link
+docker run -d \
+--rm \
+--name adminer_c \
+--link mysql_c:db \
+-p 8080:8080 \
+adminer
+
+El fichero /etc/hosts tendría que figurar el alias.
+
+docker run -d \
+--rm \
+--name adminer_c \
+--link mysql_c \
+-e ADMINER_DEFAULT_SERVER=mysql_c \
+-p 8080:8080 \
+adminer
+
+LA MEJOR OPCION UTILIZAR UNA RED PERSONALIZADA DE TIPO -> bridge
+================================================================
+
+docker networks create my_network
+
+
+docker run -d \
+--rm \
+--name mysql_c \
+--network my_network \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=root \
+-v mysql_data:/var/lib/mysql \
+mysql:8.0
+
+
+docker run -d \
+--rm \
+--name adminer_c \
+--network my_network \
+-e ADMINER_DEFAULT_SERVER=mysql_c \
+-p 8080:8080 \
+adminer
+
+****************************************************************
+Se puede usar también el alias: --network-alias y poner db
+
+
+docker run -d \
+--rm \
+--name mysql_c \
+--network my_network \
+--network-alias db \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=root \
+-v mysql_data:/var/lib/mysql \
+mysql:8.0
+
+# Ya no hace falta la var. de entorno:
+docker run -d \
+--rm \
+--name adminer_c \
+--network my_network \
+-p 8080:8080 \
+adminer
+
+
+
+
+
+
+
