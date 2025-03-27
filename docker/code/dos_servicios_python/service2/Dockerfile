@@ -6,12 +6,12 @@ WORKDIR /aplicacion
 
 # Copiar el fichero de Python:
 COPY librerias.txt .
-COPY codigo.py .
+COPY app.py .
 
 RUN pip install --no-cache-dir -r librerias.txt
 
-# Exponer el puerto 5000
-EXPOSE 5000
+# Exponer el puerto 5001
+EXPOSE 5001
 
 # Ejecutar el comando:
-CMD ["python", "codigo.py"]
+CMD ["python", "app.py"]
