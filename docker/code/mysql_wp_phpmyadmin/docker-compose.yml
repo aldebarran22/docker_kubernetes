@@ -1,0 +1,45 @@
+# Despliegue de mysql+phpmyadmin+wordpress
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE=${MYSQL_DATABASE}
+      MYSQL_USER=${MYSQL_USER}
+      MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      -"3306:3306"
+    volumes:
+      -mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_interface
+    environment:
+      PMA_HOST=${PMA_HOST}
+      PMA_USER=${PMA_USER}
+      PMA_PASSWORD=${PMA_PASSWORD}
+    ports:
+      -"8080:80"
+    depends_on:
+      - mysql
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress_site
+    environment:
+      WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+    ports:
+      -"80:80"
+    volumes:
+      -wordpress_data:/var/www/html
+    depends_on:
+      - mysql
+      
+volumes:
+  mysql_data:
+  wordpress_data:
