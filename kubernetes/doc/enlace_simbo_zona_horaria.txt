@@ -1,2 +1,28 @@
 
 ln -snf /usr/share/zoneinfo/Europe/Madrid /etc/localtime && echo Europe/Madrid > /etc/timezone
+
+&& ejecutar los dos comandos
+
+Crea un enlace simbólico (ln -s) entre el archivo de zona horaria específica 
+(/usr/share/zoneinfo/Europe/Madrid) y el archivo de configuración de zona horaria del sistema (/etc/localtime).
+
+Las opciones:
+
+	-s: Crea un enlace simbólico en lugar de copiar el archivo.
+
+	-n: Evita seguir enlaces simbólicos ya existentes.
+
+	-f: Fuerza el reemplazo del enlace si ya existe.
+
+Esto asegura que el sistema utilice la configuración de zona horaria de Europa/Madrid.
+
+echo Europe/Madrid > /etc/timezone:
+
+Escribe el nombre de la zona horaria (Europe/Madrid) en el archivo /etc/timezone. 
+Este archivo es utilizado por algunos programas y servicios para determinar 
+la zona horaria configurada del sistema.
+
+Si necesitas cambiar la zona horaria en el futuro, 
+solo necesitas actualizar el enlace simbólico, lo que es más rápido que reemplazar archivos.
+
+VERLO EN WSL
