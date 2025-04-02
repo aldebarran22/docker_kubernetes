@@ -1,5 +1,8 @@
-Crear un config map y necesitamos las variables:
-MYSQL_ROOT_PASSWORD=kubernetes
-MYSQL_USER=usudb
-MYSQL_PASSWORD=usupass
-MYSQL_DATABASE=kubernetes
+1) Variables de Entorno:
+Crear deployment con la imagen de mysql y necesitamos las variables:
+MYSQL_ROOT_PASSWORD=pass_de_root
+MYSQL_USER=usuario
+MYSQL_PASSWORD=pass
+MYSQL_DATABASE=database
+
+
