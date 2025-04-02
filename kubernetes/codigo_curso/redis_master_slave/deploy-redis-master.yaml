@@ -1,0 +1,20 @@
+# Deployment del maestro de Redis
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-master
+  template:
+    metadata:
+      labels: redis-master
+    spec:
+      containers:
+        - name: redis-c
+          image: redis 
+          ports:
+          - containerPort: 6379
+
