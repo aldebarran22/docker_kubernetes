@@ -1,0 +1,13 @@
+
+Una vez que se han creado los deploy y el servicio
+Conectamos al POD del redis-cli
+kubectl exec redis-cli-XXXX -it -- bash
+
+Conectamos con el maestro, con el nombre del servicio
+/data# redis-cli -h redis-master
+
+Set clave valor
+
+Y luego nos conectamos desde otra ventana al redis-master
+redis-cli (entramos en localhost)
+get clave

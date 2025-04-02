@@ -10,7 +10,8 @@ spec:
       app: redis-master
   template:
     metadata:
-      labels: redis-master
+      labels: 
+        app: redis-master
     spec:
       containers:
         - name: redis-c

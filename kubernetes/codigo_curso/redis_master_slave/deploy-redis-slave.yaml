@@ -10,7 +10,8 @@ spec:
       app: redis-cli
   template:
     metadata:
-      labels: redis-cli
+      labels: 
+        app: redis-cli
     spec:
       containers:
         - name: redis-c
