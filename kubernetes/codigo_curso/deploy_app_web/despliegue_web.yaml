@@ -16,11 +16,26 @@ spec:
 
     spec:
       containers:
-      - name: apache
-        image: piri12345/img-web-static:v1
-        ports:
-        - containerPort: 80
+        - name: apache
+          image: piri12345/img-web-static:v1
+          ports:
+            - containerPort: 80
 
 ---
-
 # Servicio
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-web
+  labels:
+    app:
+      web # Las etiquetas, deben coincidir con el deploy o POD que queremos exponer
+      # hacia afuera.
+spec:
+  type: NodePort # No es obligatorio, ponerlo, si no se pone es: ClusterIP (comunicación interna)
+  ports:
+    - port: 80
+      nodePort: 30002
+      protocol: TCP
+  selector:
+    app: web
