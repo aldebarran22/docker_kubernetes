@@ -6,7 +6,7 @@ metadata:
   name: deploy-web
 spec:
   selector: # Es para seleccionar los objetos que coincidan en las etiquetas
-    matchlabels:
+    matchLabels:
       app: web
   replicas: 2 # Crear dos pods
   template:
