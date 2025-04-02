@@ -1,0 +1,5 @@
+Crear un config map y necesitamos las variables:
+MYSQL_ROOT_PASSWORD=kubernetes
+MYSQL_USER=usudb
+MYSQL_PASSWORD=usupass
+MYSQL_DATABASE=kubernetes
