@@ -1,0 +1,19 @@
+# Deployment del cliente de Redis
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-cli
+  template:
+    metadata:
+      labels: redis-cli
+    spec:
+      containers:
+        - name: redis-c
+          image: redis 
+          ports:
+          - containerPort: 6379

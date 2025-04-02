@@ -1,0 +1,14 @@
+# El servicio lo utiliza el cliente para conectar con el
+# Servidor
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master
+spec:
+  selector:
+    app: redis-master
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+  type: ClusterIP # No es necesario, ya toma este por defecto
