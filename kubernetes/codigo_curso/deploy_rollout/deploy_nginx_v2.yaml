@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-aplicacion
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mi-app # Para buscar / agrupar con la misma label
+  template:
+    metadata:
+      labels:
+        app: mi-app # Le asigna a los pods y Replica set
+    spec:
+      containers:
+        - name: mi-app-container
+          image: nginx:1.26
+          ports:
+            - containerPort: 80
