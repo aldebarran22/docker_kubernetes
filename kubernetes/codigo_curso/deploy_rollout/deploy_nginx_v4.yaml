@@ -1,12 +1,13 @@
-# Hacemos un cambio de la imagen: 1.19 a la 1.26
+# Hacemos una actualización de la imagen de 1.27 a 1.22
+# Y cambiamos la estrategia de Recreate
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mi-aplicacion
-  annotations:
-    kubernetes.io/change-cause: "Versión de la imagen 1.19 a 1.26"
 spec:
   replicas: 3
+  strategy:
+    type: Recreate # Por defecto, es RollingUpdate
   selector:
     matchLabels:
       app: mi-app # Para buscar / agrupar con la misma label
@@ -17,6 +18,6 @@ spec:
     spec:
       containers:
         - name: mi-app-container
-          image: nginx:1.26
+          image: nginx:1.22
           ports:
             - containerPort: 80

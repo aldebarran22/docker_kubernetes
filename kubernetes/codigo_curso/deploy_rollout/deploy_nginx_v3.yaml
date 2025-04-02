@@ -6,7 +6,7 @@ metadata:
   name: mi-aplicacion
 spec:
   replicas: 3
-  Strategy:
+  strategy:
     type: Recreate # Por defecto, es RollingUpdate
   selector:
     matchLabels:
