@@ -1,0 +1,26 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-web
+spec:
+  selector: # Es para seleccionar los objetos que coincidan en las etiquetas
+    matchlabels:
+      app: web
+  replicas: 2 # Crear dos pods
+  template:
+    metadata:
+      labels: # Los PODs que crea les asigna estas etiquetas automáticamente
+        app: web
+
+    spec:
+      containers:
+      - name: apache
+        image: piri12345/img-web-static:v1
+        ports:
+        - containerPort: 80
+
+---
+
+# Servicio
