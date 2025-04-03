@@ -14,6 +14,8 @@ OJO, los PVC ponerlos separados para borrar los despligues de forma independient
 se puede eliminar objetos con:
 kubectl delete pods --all
 
+
+
 minikube service wordpress
 
 Si ponemos
