@@ -1,0 +1,67 @@
+1) Variables de Entorno:
+Crear deployment con la imagen de mysql y necesitamos las variables:
+MYSQL_ROOT_PASSWORD=pass_de_root
+MYSQL_USER=usuario
+MYSQL_PASSWORD=pass
+MYSQL_DATABASE=database
+
+2) Crear un configmap y luego utilizarlo en el deploy de mysql
+
+3) Crear un secret y luego utilizarlo en el deploy de mysql
+Para codificar la password o la propiedad de mysql que queramos entrar en wsl:
+
+por ejemplo la password:
+echo -n "root" | base64
+
+Para activar Entrar en minikube ssh
+nano hay que instalarlo pero luego no funcionan las flechas
+vi esta pero las flechas tampoco funciona - utilizar las letras
+
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+      - secrets
+    providers:
+      - aescbc:
+          keys:
+            - name: key1
+              secret: <clave_en_base64>
+      - identity: {}
+
+
+resources: Especifica que el recurso "secrets" será encriptado.
+
+providers: Define el método de encriptación, en este caso aescbc (AES con CBC).
+
+keys: Incluye una clave secreta (codificada en Base64) que se utilizará para cifrar los datos.
+
+Para generar una clave de 256 bits en Base64 desde el terminal: 
+head -c 32 /dev/urandom | base64
+
+Este fichero se guarda como: /etc/kubernetes/encryption-config.yaml
+
+Dentro del fichero:
+-------------------
+Se añade: 
+    command: /etc/kubernetes/manifests/kube-apiserver.yaml
+    - kube-apiserver
+    - --encryption-provider-config=/etc/kubernetes/encryption-config.yaml
+
+
+Salir de la maquina de minikube con: exit
+Para reiniciar el API Server
+kubectl delete pod -n kube-system kube-apiserver-<node-name>
+
+
+Verificar la encriptacion:
+-------------------------
+etcdctl get /registry/secrets/<namespace>/<secret-name>
+
+
+
+
+
+
+
+
