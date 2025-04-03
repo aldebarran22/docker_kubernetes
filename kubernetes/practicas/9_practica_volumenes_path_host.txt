@@ -1,7 +1,0 @@
-PRACTICA DE VOLUMENES PERSISTENTES
-
-- Crear un cluster de 5 nodos
-- Comprobar los 5 nodos
-- Crear el PV.yaml
-- Crear el PVC.yaml
-- Crear el POD

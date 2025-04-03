@@ -1,0 +1,26 @@
+Crear  para mysql:
+PersistentVolumeClaim 
+Servicio
+Despligue
+
+Crear para Wordpress:
+PersistentVolumeClaim
+Servicio
+Despligue
+
+
+OJO, los PVC ponerlos separados para borrar los despligues de forma independiente.
+
+se puede eliminar objetos con:
+kubectl delete pods --all
+
+minikube service wordpress
+
+Si ponemos
+minikube service wordpress --url
+Nos da la URL final
+
+- Instalar WordPress
+- Probarlo
+- Borrar los despliegues pero no borrar los volumenes
+- Y volver a lanzar los despligues, debería estar todo ok!
