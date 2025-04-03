@@ -1,0 +1,17 @@
+Crear un deploy para Apache
+
+Tener un volumen montado para conectar el fichero de 
+publicación de Apache: /usr/local/apache2/htdocs
+
+Y dentro del nodo crear la carpeta: /home/kubernetes/paginas
+ y un fichero index.html
+
+Antes del despliegue crear el fichero:
+Situado en: /home/kubernetes/paginas
+
+echo "<h2>Contenido</h2>" | sudo tee index.html
+
+- Hacer el despliegue del deploy en un fichero YAML
+
+- Lanzar port-forward para el puerto 8080
+- Probar: http://localhost:8080

@@ -1,25 +1,19 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: volumenes
+  name: pod-volumen1
 spec:
   containers:
   - name: nginx
     image: nginx
     volumeMounts:
     - mountPath: /home
-      name: home
-    - mountPath: /git
-      name: git
-      readOnly: true
+      name: home 
     - mountPath: /temp
       name: temp
   volumes:
   - name: home
     hostPath:
-      path: /home/kubernetes/datos
-  - name: git
-    gitRepo:
-      repository: https://github.com/aldebarran22/docker_kubernetes.git
+      path: /home/kubernetes/datos 
   - name: temp
     emptyDir: {}
