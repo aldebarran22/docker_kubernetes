@@ -25,10 +25,22 @@ spec:
               name: db-port
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: root
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_USER
-              value: antonio
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: MYSQL_USER
             - name: MYSQL_PASSWORD
-              value: antonio
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: MYSQL_PASSWORD
             - name: MYSQL_DATABASE
-              value: pruebas
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: MYSQL_DATABASE
