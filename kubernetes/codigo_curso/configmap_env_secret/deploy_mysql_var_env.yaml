@@ -1,0 +1,37 @@
+## Despligue de MySQL y  las var. entorno se indican
+# dentro del contenedor
+apiVersion: apps/v1
+Kind: Deployment
+metadata:
+  name: mysql-deploy1
+  labels:
+    app: mysql
+    type: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+      type: db
+  template:
+    metadata:
+      labels:
+        app: mysql
+        type: db
+    spec:
+      containers:
+        - name: mysql-c
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+              name: db-port
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_USER
+              value: antonio
+            - name: MYSQL_PASSWORD
+              value: antonio
+            - name: MYSQL_DATABASE
+              value: pruebas
+
