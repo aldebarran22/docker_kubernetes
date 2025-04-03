@@ -1,0 +1,17 @@
+Lanzar en este orden:
+1- deploy apache
+2- servicio apache
+3- ingress apache
+
+Hacerlo en WSL: y en Windows c:\windows\System32\drivers\etc\hosts 
+
+En minikube es necesario añadir apache.local al /etc/hosts
+127.0.0.1 apache.local
+
+Tocarlo en los dos Windows y WSL -> /etc/hosts
+
+
+En minikube tenemos que lanzar:
+minikube tunnel
+
+Probar: http://apache.local
