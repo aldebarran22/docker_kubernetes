@@ -5,7 +5,7 @@ metadata:
   labels:
     app: wordpress
 spec:
-  accessMode:
+  accessModes:
     - ReadWriteOnce
   resources:
     requests:
