@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: wp-config
 data:
-  WORDPRESS_BD_PASSWORD: wp_root
-  WORDPRESS_BD_HOST: wordpress-mysql
-  WORDPRESS_BD_USER: wordpress
+  WORDPRESS_DB_PASSWORD: wp_root
+  WORDPRESS_DB_HOST: wordpress-mysql
+  WORDPRESS_DB_USER: wordpress
