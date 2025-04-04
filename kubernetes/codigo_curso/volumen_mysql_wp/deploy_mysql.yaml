@@ -49,10 +49,10 @@ spec:
         - name: vol1
           mountPath: /var/lib/mysql
 
-    volumes: # Que volumen vamos a utilizar:
-    - name: vol1
-      persistentVolumeClaim:
-        claimName: mysql-pv-claim
+      volumes: # Que volumen vamos a utilizar:
+      - name: vol1
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
 
       
 
