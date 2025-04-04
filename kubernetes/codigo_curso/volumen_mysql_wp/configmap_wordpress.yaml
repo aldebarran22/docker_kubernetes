@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wp-config
+data:
+  WORDPRESS_BD_PASSWORD: wp_root
+  WORDPRESS_BD_HOST: wordpress-mysql
+  WORDPRESS_BD_USER: wordpress
