@@ -1,0 +1,7 @@
+Crear un deploy para Apache y  montar un volumen
+de tipo hostPath con la carpeta de publicacion de Apache
+y una carpeta dentro del nodo de minikube
+
+imagen: httpd
+El punto de montaje: 
+carpeta de publicacion de Apache: /usr/local/apache2/htdocs

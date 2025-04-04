@@ -6,14 +6,14 @@ spec:
   containers:
   - name: nginx
     image: nginx
-    volumeMounts:
+    volumeMounts: # Carpeta del contenedor en el POD
     - mountPath: /home
       name: home 
     - mountPath: /temp
       name: temp
   volumes:
   - name: home
-    hostPath:
+    hostPath: # Carpeta dentro del nodo de minikube
       path: /home/kubernetes/datos 
   - name: temp
     emptyDir: {}
