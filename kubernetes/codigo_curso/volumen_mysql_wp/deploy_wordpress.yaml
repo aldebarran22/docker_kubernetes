@@ -36,3 +36,13 @@ spec:
           configMapKeyRef:
             name: wp-config
             key: WORDPRESS_DB_USER
+      ports:
+      - containerPort: 80
+        name: wordpress
+      volumeMounts:
+      - name: vol2
+        mountPath: /var/www/html
+    volumes:
+    - name: vol2
+      persistentVolumeClaim:
+        claimName: wp-pv-claim
